@@ -34,9 +34,12 @@ client.on("message", async (message) => {
     message.channel.sendMessage("Subscribed!");
     addSubscriber(message.channel_id);
   }
-  if (message.content === `<@${client.user._id}> stop yandere`) {
+  else if (message.content === `<@${client.user._id}> stop yandere`) {
     message.channel.sendMessage("Unsubscribed!");
     removeSubscriber(message.channel_id);
+  }
+  else if (message.content === `<@${client.user._id}> invite`) {
+    message.channel.sendMessage("[❤️](https://app.revolt.chat/bot/01FDT16ZHW7894FVZJGKE6184P)");
   }
 });
 
