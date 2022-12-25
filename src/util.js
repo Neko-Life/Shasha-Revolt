@@ -1,6 +1,6 @@
 "use strict";
 
-const { getParam, CLI_ARGS } = require("../cli");
+const { getParam, CLI_ARGS } = require("./cli");
 const { BOT_TOKEN } = process.env;
 
 const getLoginToken = () => {
