@@ -15,7 +15,7 @@ if (typeof getParam(CLI_ARGS.DEBUG) === "string") {
 
 const { getLoginToken } = require("./src/util");
 const { getClient } = require("./src/client");
-const { addSubscriber, removeSubscriber } = require("./src/yandere");
+const { addSubscriber, removeSubscriber, yandereInit } = require("./src/yandere");
 
 const LOGIN_TOKEN = getLoginToken();
 if (!LOGIN_TOKEN) {
@@ -24,9 +24,10 @@ if (!LOGIN_TOKEN) {
 
 const client = getClient();
 
-client.on("ready", async () =>
-    console.info(`Logged in as ${client.user.username} (${client.user._id})`),
-);
+client.on("ready", async () => {
+  console.info(`Logged in as ${client.user.username} (${client.user._id})`);
+  yandereInit();
+});
 
 client.on("message", async (message) => {
   if (message.content === `<@${client.user._id}> start yandere`) {
