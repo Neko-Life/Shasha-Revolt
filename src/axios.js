@@ -4,7 +4,7 @@ const axios = require("axios");
 const FormData = require("form-data");
 const { readFileSync } = require("fs");
 
-const postAttachment = async (filePath, contentType = "image/*", filename = "image") => {
+const postAttachment = async (filePath, contentType = "image/*", filename = "Beautiful Art") => {
   const uri = "https://autumn.revolt.chat/attachments";
 
   const optionsRes = await axios(uri, {
