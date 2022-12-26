@@ -49,8 +49,11 @@ const dbCache = new Map();
 const subscriberCache = [];
 
 let yandereFileList = readdirSync(YANDERE_FOLDER);
+if (getDebugMode()) console.log("[readdirSync YANDERE_FOLDER] Found", yandereFileList.length);
+
 const readYandereFolderInterval = setInterval(() => {
   yandereFileList = readdirSync(YANDERE_FOLDER);
+  if (getDebugMode()) console.log("[readdirSync YANDERE_FOLDER interval] Found", yandereFileList.length);
 }, 12*60*60*1000);
 
 const getRandomYandereFile = () => {
@@ -110,10 +113,12 @@ const sendRandomYandere = async (channel_id) => {
 
   do {
     randFile = getRandomYandereFile();
+    if (getDebugMode()) console.log("[randFile sendRandomYandere]", randFile);
+    if (randFile.match(/ loli[\. ]/)?.length) continue;
 
     uploaded = findUpload(randFile);
+    if (getDebugMode()) console.log("[uploaded sendRandomYandere]", uploaded);
 
-    if (getDebugMode()) console.log("[randFile uploaded sendRandomYandere]", randFile, uploaded);
     if (!uploaded) {
       uploaded = await uploadFile(getFilePath(randFile), randFile);
       break;
