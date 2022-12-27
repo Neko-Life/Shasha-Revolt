@@ -123,7 +123,7 @@ const sendRandomYandere = async (channel_id) => {
       uploaded = await uploadFile(getFilePath(randFile), randFile);
       break;
     }
-  } while (hasSent(uploaded.autumn_id, channel_id));
+  } while (!uploaded?.autumn_id || hasSent(uploaded.autumn_id, channel_id));
 
   const message = await channel.sendMessage({
     attachments: [uploaded.autumn_id],
@@ -151,7 +151,11 @@ const applyInterval = (subscribed) => {
   sendRandomYandere(subscribed.channel_id);
 }
 
+let initialized = false;
+
 const yandereInit = async () => {
+  if (initialized) return;
+
   const savedSettings = await UploadedYandere.findAll({
     include: [SentYandere]
   });
@@ -185,6 +189,8 @@ const yandereInit = async () => {
 
     initialTimer+=10;
   }
+
+  initialized = true;
 
   return subscriberCache;
 }
