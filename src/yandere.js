@@ -8,6 +8,7 @@ const { getDebugMode } = require("./debug/debug");
 const Models = require("../models");
 
 const { YANDERE_FOLDER } = process.env;
+const SEND_DURATION = 6*60*60*1000;
 
 /**
  * @type {typeof import("sequelize").Model}
@@ -54,7 +55,7 @@ if (getDebugMode()) console.log("[readdirSync YANDERE_FOLDER] Found", yandereFil
 const readYandereFolderInterval = setInterval(() => {
   yandereFileList = readdirSync(YANDERE_FOLDER);
   if (getDebugMode()) console.log("[readdirSync YANDERE_FOLDER interval] Found", yandereFileList.length);
-}, 12*60*60*1000);
+}, SEND_DURATION);
 
 const getRandomYandereFile = () => {
   return yandereFileList[Math.floor(Math.random() * yandereFileList.length)];
@@ -147,7 +148,7 @@ const applyInterval = (subscribed) => {
   subscribed.interval = setInterval(() => {
     if (getDebugMode()) console.log("[subscriber.interval] Sending pic to channel:", subscribed.channel_id);
     sendRandomYandere(subscribed.channel_id);
-  }, 12*60*60*1000);
+  }, SEND_DURATION);
   sendRandomYandere(subscribed.channel_id);
 }
 
