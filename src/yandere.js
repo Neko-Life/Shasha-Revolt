@@ -247,5 +247,3 @@ module.exports = {
 }
 
 // vim: et sw=4 ts=8
-//
-// // vim: et sw=4 ts=8
