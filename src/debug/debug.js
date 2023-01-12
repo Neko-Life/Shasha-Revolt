@@ -3,12 +3,14 @@
 let debug = false;
 
 const setDebugMode = (mode) => {
-  debug = mode;
+    debug = mode;
 }
 
 const getDebugMode = () => debug;
 
 module.exports = {
-  setDebugMode,
-  getDebugMode,
+    setDebugMode,
+    getDebugMode,
 }
+
+// vim: et sw=4 ts=8

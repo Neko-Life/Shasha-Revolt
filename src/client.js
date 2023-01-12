@@ -6,5 +6,7 @@ const client = new Client();
 const getClient = () => client;
 
 module.exports = {
-  getClient,
+    getClient,
 }
+
+// vim: et sw=4 ts=8
