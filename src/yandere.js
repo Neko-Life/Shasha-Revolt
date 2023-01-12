@@ -188,7 +188,7 @@ const yandereInit = async () => {
       applyInterval(subscribed);
     },initialTimer*1000);
 
-    initialTimer+=10;
+    initialTimer+=20;
   }
 
   initialized = true;
