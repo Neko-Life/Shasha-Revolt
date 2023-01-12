@@ -3,6 +3,7 @@
 const axios = require("axios");
 const FormData = require("form-data");
 const { readFileSync } = require("fs");
+const { getFileExtension } = require("./util");
 
 const postAttachment = async (filePath, contentType = "image/*", filename = "Beautiful Art") => {
     const uri = "https://autumn.revolt.chat/attachments";
@@ -18,7 +19,8 @@ const postAttachment = async (filePath, contentType = "image/*", filename = "Bea
     if (optionsRes.status === 200) {
         const file = readFileSync(filePath);
         const form = new FormData();
-        form.append("file", file, { contentType, filename, });
+        const filenameWithExtension = filename+getFileExtension(filePath);
+        form.append("file", file, { contentType, filename: filenameWithExtension, });
 
         return axios(uri, {
             method: 'POST',
