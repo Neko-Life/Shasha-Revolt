@@ -7,6 +7,10 @@ const getLoginToken = () => {
     return getParam(CLI_ARGS.TOKEN) || BOT_TOKEN;
 }
 
+/**
+* @param {string} filename
+* @returns {{ ext: string, valid: boolean }}
+*/
 const getFileExtension = (filename) => {
     let ret = {
         ext: "",

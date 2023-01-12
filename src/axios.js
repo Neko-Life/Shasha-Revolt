@@ -19,7 +19,14 @@ const postAttachment = async (filePath, contentType = "image/*", filename = "Bea
     if (optionsRes.status === 200) {
         const file = readFileSync(filePath);
         const form = new FormData();
-        const filenameWithExtension = filename+getFileExtension(filePath);
+
+        const extensionInfo = getFileExtension(filePath);
+        let filenameWithExtension = filename;
+
+        if (extensionInfo.valid) {
+            filenameWithExtension += extensionInfo.ext;
+        }
+
         form.append("file", file, { contentType, filename: filenameWithExtension, });
 
         return axios(uri, {
