@@ -117,13 +117,13 @@ const sendRandomYandere = async (channel_id) => {
         if (getDebugMode()) console.log("[randFile sendRandomYandere]", randFile);
         if (randFile.match(/ loli[\. ]/)?.length) continue;
 
-        uploaded = findUpload(randFile);
-        if (getDebugMode()) console.log("[uploaded sendRandomYandere]", uploaded);
+        // uploaded = findUpload(randFile);
+        // if (getDebugMode()) console.log("[uploaded sendRandomYandere]", uploaded);
 
-        if (!uploaded) {
+        // if (!uploaded) {
             uploaded = await uploadFile(getFilePath(randFile), randFile);
             break;
-        }
+        // }
     } while (!uploaded?.autumn_id || hasSent(uploaded.autumn_id, channel_id));
 
     const message = await channel.sendMessage({
